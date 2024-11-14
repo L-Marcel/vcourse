@@ -2,6 +2,12 @@
 
 Um site para gerenciamento de um curso qualquer. O desenvolvimento tem fins didáticos.
 
+# json-server
+
+Adicionei um comando `pnpm db` no `package.json` para iniciar o `json-server` simulando um `backend` real na porta `8080`. Todas as rotas foram criadas automaticamente. Segue a documentação das rotas geradas:
+
+https://www.npmjs.com/package/json-server#routes
+
 ----
 
 This template should help get you started developing with Vue 3 in Vite.

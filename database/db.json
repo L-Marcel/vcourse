@@ -1,0 +1,12 @@
+{
+    "videos": [
+        {
+            "id": 1,
+            "title": "Exemplo de vídeo",
+            "description": "Descrição do vídeo",
+            "duration": 120,
+            "createdAt": "2024-11-14T10:00:00Z",
+            "blob": ""
+        }
+    ]
+}
