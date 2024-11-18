@@ -2,13 +2,19 @@
 
 Um site para gerenciamento de um curso qualquer. O desenvolvimento tem fins didáticos.
 
+# extensões
+No `vscode`, recomendo instalar a extensão `vue - official`.
+
 # json-server
 
-Adicionei um comando `pnpm db` no `package.json` para iniciar o `json-server` simulando um `backend` real na porta `8080`. Todas as rotas foram criadas automaticamente. Segue a documentação das rotas geradas:
+Adicionei um comando `pnpm db` no `package.json` para iniciar o `json-server` e o `json-server-auth` simulando um `backend` real na porta `8080`. Todas as rotas foram criadas automaticamente. Segue a documentação das rotas geradas:
 
-https://www.npmjs.com/package/json-server#routes
+Rotas no geral: https://www.npmjs.com/package/json-server#routes
+Autenticação: https://github.com/jeremyben/json-server-auth?tab=readme-ov-file#login-
 
 ----
+
+# vue
 
 This template should help get you started developing with Vue 3 in Vite.
 

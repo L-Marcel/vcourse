@@ -1,12 +1,12 @@
 {
-  "name": "vcourse",
+  "name": "vue",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "db": "json-server ./database/db.json --port 8080",
     "build": "run-p type-check \"build-only {@}\" --",
+    "db": "json-server-auth ./database/db.json -p 8080 -r ./database/routes.json",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
@@ -14,7 +14,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "json-server": "1.0.0-beta.3",
+    "json-server": "0.*",
+    "json-server-auth": "^2.1.0",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5"
   },
