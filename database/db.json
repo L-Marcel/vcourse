@@ -1,20 +1,20 @@
 {
-    "videos": [
-        {
-            "id": 0,
-            "title": "Exemplo de vídeo",
-            "description": "Descrição do vídeo",
-            "duration": 120,
-            "createdAt": "2024-11-14T10:00:00Z",
-            "blob": ""
-        }
-    ],
-    "users": [
-        {
-            "id": 0,
-            "name": "Administrador",
-            "email": "admin@admin.com",
-            "password": "admin"
-        }
-    ]
+  "videos": [
+    {
+      "id": 0,
+      "title": "Introdução ao Vue.js",
+      "description": "Aprenda os conceitos básicos dessa tecnologia.",
+      "duration": 120,
+      "createdAt": "2024-11-14T10:00:00Z",
+      "youtube": "9DRY-aNPta0"
+    }
+  ],
+  "users": [
+    {
+      "id": 0,
+      "name": "Administrador",
+      "email": "admin@admin.com",
+      "password": "admin"
+    }
+  ]
 }

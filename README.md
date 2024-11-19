@@ -3,6 +3,7 @@
 Um site para gerenciamento de um curso qualquer. O desenvolvimento tem fins didáticos.
 
 # extensões
+
 No `vscode`, recomendo instalar a extensão `vue - official`.
 
 # json-server
@@ -12,7 +13,11 @@ Adicionei um comando `pnpm db` no `package.json` para iniciar o `json-server` e 
 Rotas no geral: https://www.npmjs.com/package/json-server#routes
 Autenticação: https://github.com/jeremyben/json-server-auth?tab=readme-ov-file#login-
 
-----
+# vídeos
+
+Essa aplicação só tem objetivo didático, portanto, nenhum dos vídeos registrados no banco de dados é realmente nosso. Para além disso, todos são reproduzidos pelo youtube.
+
+---
 
 # vue
 
