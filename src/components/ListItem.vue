@@ -1,8 +1,23 @@
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
+import EditButton from './buttons/EditButton.vue'
+import RemoveButton from './buttons/RemoveButton.vue'
+
+const props = defineProps({
+  editable: Boolean,
+})
+</script>
+
 <template>
-  <article
+  <RouterLink
     tabindex="0"
-    class="flex flex-col md:flex-row gap-3 bg-zinc-200 p-4 hover:bg-green-400 group transition-colors duration-200 hover:cursor-pointer focus-visible:outline-none focus-visible:ring-2 ring-green-500"
+    to="/"
+    class="flex flex-col relative md:flex-row gap-3 bg-zinc-200 p-4 hover:bg-green-400 group transition-colors duration-200 hover:cursor-pointer focus-visible:outline-none focus-visible:ring-2 ring-green-500"
   >
+    <div v-show="props.editable" class="absolute flex flex-row top-4 left-4">
+      <EditButton />
+      <RemoveButton />
+    </div>
     <img
       src="https://img.youtube.com/vi/9DRY-aNPta0/hqdefault.jpg"
       class="object-cover min-w-[160px] max-w-[160px] w-[160px] min-h-[90px] max-h-[90px] h-[90px]"
@@ -23,5 +38,5 @@
         <time class="font-thin">2 horas e 3 minutos</time>
       </div>
     </div>
-  </article>
+  </RouterLink>
 </template>

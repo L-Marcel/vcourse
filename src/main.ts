@@ -5,9 +5,16 @@ import App from './App.vue'
 import router from './router'
 
 import { OhVueIcon, addIcons } from 'oh-vue-icons'
-import { IoCloseSharp, IoArrowForwardSharp, IoArrowBackSharp } from 'oh-vue-icons/icons'
+import {
+  IoCloseSharp,
+  IoArrowForwardSharp,
+  IoArrowBackSharp,
+  IoAddSharp,
+  IoPencil,
+  IoTrashSharp,
+} from 'oh-vue-icons/icons'
 
-addIcons(IoCloseSharp, IoArrowForwardSharp, IoArrowBackSharp)
+addIcons(IoCloseSharp, IoArrowForwardSharp, IoArrowBackSharp, IoAddSharp, IoPencil, IoTrashSharp)
 
 const app = createApp(App)
 

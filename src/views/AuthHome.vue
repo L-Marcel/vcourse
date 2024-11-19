@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import LogoutButton from '@/components/buttons/LogoutButton.vue'
 import ListItem from '../components/ListItem.vue'
-import LoginButton from '@/components/buttons/LoginButton.vue'
+import AddButton from '@/components/buttons/AddButton.vue'
 </script>
 
 <template>
@@ -12,7 +13,7 @@ import LoginButton from '@/components/buttons/LoginButton.vue'
         <h1 class="w-min text-nowrap pr-1 font-semibold text-2xl md:text-4xl bg-zinc-300">
           <span class="bg-green-500 px-1 mr-1 inline-block h-full">V</span>Course
         </h1>
-        <LoginButton />
+        <LogoutButton />
       </div>
       <p class="text-sm md:text-base">
         O melhor curso gratuido de <span class="text-green-600 font-semibold">Vue.js</span> do
@@ -27,11 +28,14 @@ import LoginButton from '@/components/buttons/LoginButton.vue'
       </p>
       <p class="text-sm md:text-base font-light">Prezamos a qualidade e simplicidade.</p>
     </section>
+    <section>
+      <AddButton />
+    </section>
     <section class="flex flex-col w-full min-h-full h-full gap-4">
-      <ListItem />
-      <ListItem />
-      <ListItem />
-      <ListItem />
+      <ListItem editable />
+      <ListItem editable />
+      <ListItem editable />
+      <ListItem editable />
     </section>
   </main>
 </template>
