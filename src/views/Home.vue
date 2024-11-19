@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import AdminButton from '@/components/buttons/AdminButton.vue'
 import ListItem from '../components/ListItem.vue'
-import LoginButton from '@/components/buttons/LoginButton.vue'
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import LoginButton from '@/components/buttons/LoginButton.vue'
         <h1 class="w-min text-nowrap pr-1 font-semibold text-2xl md:text-4xl bg-zinc-300">
           <span class="bg-green-500 px-1 mr-1 inline-block h-full">V</span>Course
         </h1>
-        <LoginButton />
+        <AdminButton />
       </div>
       <p class="text-sm md:text-base">
         O melhor curso gratuido de <span class="text-green-600 font-semibold">Vue.js</span> do

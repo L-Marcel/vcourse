@@ -6,6 +6,8 @@ import router from './router'
 
 import { OhVueIcon, addIcons } from 'oh-vue-icons'
 import {
+  IoLockClosedSharp,
+  IoPersonSharp,
   IoCloseSharp,
   IoArrowForwardSharp,
   IoArrowBackSharp,
@@ -14,7 +16,16 @@ import {
   IoTrashSharp,
 } from 'oh-vue-icons/icons'
 
-addIcons(IoCloseSharp, IoArrowForwardSharp, IoArrowBackSharp, IoAddSharp, IoPencil, IoTrashSharp)
+addIcons(
+  IoLockClosedSharp,
+  IoPersonSharp,
+  IoCloseSharp,
+  IoArrowForwardSharp,
+  IoArrowBackSharp,
+  IoAddSharp,
+  IoPencil,
+  IoTrashSharp,
+)
 
 const app = createApp(App)
 
