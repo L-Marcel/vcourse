@@ -2,6 +2,35 @@
 import BackButton from '@/components/buttons/BackButton.vue'
 import LoginButton from '@/components/buttons/LoginButton.vue'
 import Input from '@/components/Input.vue'
+import router from '@/router'
+import { inject } from 'vue'
+import type { VueCookies } from 'vue-cookies'
+
+const $cookies = inject<VueCookies>('$cookies')
+
+const data = {
+  email: '',
+  password: '',
+}
+
+const submit = async (e: Event) => {
+  e.preventDefault()
+  const response = await fetch('http://localhost:8080/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+
+  if (response.ok) {
+    const { accessToken: token } = await response.json()
+    $cookies?.set('vcourse@token', token)
+    router.push('/')
+  } else {
+    alert('Credenciais inválidas')
+  }
+}
 </script>
 
 <template>
@@ -15,9 +44,15 @@ import Input from '@/components/Input.vue'
       </div>
     </section>
     <section>
-      <form class="flex flex-col gap-4 sm:max-w-[50%] md:max-w-[35%]">
-        <Input placeholder="Administrador" />
-        <Input icon="io-lock-closed-sharp" placeholder="Senha" type="password" />
+      <form v-on:submit="submit" class="flex flex-col gap-4 sm:max-w-[50%] md:max-w-[35%]">
+        <Input v-model="data.email" placeholder="Administrador" required />
+        <Input
+          v-model="data.password"
+          icon="io-lock-closed-sharp"
+          placeholder="Senha"
+          type="password"
+          required
+        />
         <LoginButton />
       </form>
     </section>

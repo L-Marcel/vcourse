@@ -1,8 +1,40 @@
 {
   "videos": [
     {
-      "id": 0,
+      "id": 1,
       "title": "Introdução ao Vue.js",
+      "description": "Aprenda os conceitos básicos dessa tecnologia.",
+      "duration": 110,
+      "createdAt": "2024-11-14T10:00:00Z",
+      "youtube": "9DRY-aNPta0"
+    },
+    {
+      "id": 2,
+      "title": "Introdução ao Vue.js - 2",
+      "description": "Aprenda os conceitos básicos dessa tecnologia.",
+      "duration": 100,
+      "createdAt": "2024-11-14T10:00:00Z",
+      "youtube": "9DRY-aNPta0"
+    },
+    {
+      "id": 3,
+      "title": "Introdução ao Vue.js - 3",
+      "description": "Aprenda os conceitos básicos dessa tecnologia.",
+      "duration": 150,
+      "createdAt": "2024-11-14T10:00:00Z",
+      "youtube": "9DRY-aNPta0"
+    },
+    {
+      "id": 4,
+      "title": "Introdução ao Vue.js - 4",
+      "description": "Aprenda os conceitos básicos dessa tecnologia.",
+      "duration": 120,
+      "createdAt": "2024-11-14T10:00:00Z",
+      "youtube": "9DRY-aNPta0"
+    },
+    {
+      "id": 5,
+      "title": "Introdução ao Vue.js - 5",
       "description": "Aprenda os conceitos básicos dessa tecnologia.",
       "duration": 120,
       "createdAt": "2024-11-14T10:00:00Z",
@@ -11,10 +43,10 @@
   ],
   "users": [
     {
-      "id": 0,
-      "name": "Administrador",
       "email": "admin@admin.com",
-      "password": "admin"
+      "password": "$2a$10$iY9MlcMz0AWbEsKoQkZZt.jPwz90/vVtngO.HGP.qccXayw7xQ4Bu",
+      "name": "Administrator",
+      "id": 1
     }
   ]
 }

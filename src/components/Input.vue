@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useAttrs } from 'vue'
+
 const props = defineProps({
   icon: {
     type: String,
@@ -11,7 +13,7 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  value: {
+  modelValue: {
     type: String,
     default: '',
   },
@@ -20,6 +22,9 @@ const props = defineProps({
     default: 'text',
   },
 })
+
+const attrs = useAttrs()
+const emit = defineEmits(['update:modelValue'])
 </script>
 
 <template>
@@ -32,7 +37,16 @@ const props = defineProps({
         class="bg-zinc-200 outline-none px-4 py-2 w-full"
         v-bind:type="props.type"
         v-bind:placeholder="props.placeholder"
-        v-bind:value="props.value"
+        v-bind:value="props.modelValue"
+        v-bind="attrs"
+        v-on:input="
+          (event) => {
+            const target = event.target as HTMLInputElement | null
+            if (target) {
+              emit('update:modelValue', target.value)
+            }
+          }
+        "
       />
     </div>
   </label>

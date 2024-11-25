@@ -1,6 +1,47 @@
 <script setup lang="ts">
 import AdminButton from '@/components/buttons/AdminButton.vue'
-import ListItem from '../components/ListItem.vue'
+import ListItem from '../components/VideoCard.vue'
+import { inject, onMounted, reactive, ref } from 'vue'
+import type { VueCookies } from 'vue-cookies'
+import AddButton from '@/components/buttons/AddButton.vue'
+import LogoutButton from '@/components/buttons/LogoutButton.vue'
+import type { Video } from '@/types/videos'
+
+const $cookies = inject<VueCookies>('$cookies')
+const authenticated = ref(false)
+const videos = ref<Video[]>([])
+const token = $cookies?.get('vcourse@token')
+
+const isAuth = async () => {
+  const response = await fetch('http://localhost:8080/users/1', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  })
+
+  return response.ok
+}
+
+const getVideos = async () => {
+  const response = await fetch('http://localhost:8080/videos', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+
+  if (response.ok) {
+    return await response.json()
+  } else {
+    return []
+  }
+}
+onMounted(async () => {
+  authenticated.value = await isAuth()
+  videos.value = await getVideos()
+})
 </script>
 
 <template>
@@ -12,7 +53,8 @@ import ListItem from '../components/ListItem.vue'
         <h1 class="w-min text-nowrap pr-1 font-semibold text-2xl md:text-4xl bg-zinc-300">
           <span class="bg-green-500 px-1 mr-1 inline-block h-full">V</span>Course
         </h1>
-        <AdminButton />
+        <LogoutButton v-show="authenticated" />
+        <AdminButton v-show="!authenticated" />
       </div>
       <p class="text-sm md:text-base">
         O melhor curso gratuido de <span class="text-green-600 font-semibold">Vue.js</span> do
@@ -27,11 +69,24 @@ import ListItem from '../components/ListItem.vue'
       </p>
       <p class="text-sm md:text-base font-light">Prezamos a qualidade e simplicidade.</p>
     </section>
-    <section class="flex flex-col w-full min-h-full h-full gap-4">
-      <ListItem />
-      <ListItem />
-      <ListItem />
-      <ListItem />
+    <section v-show="authenticated">
+      <AddButton />
+    </section>
+    <section class="flex flex-col w-full min-h-full h-full">
+      <ul class="flex flex-col w-full min-h-full h-full gap-4">
+        <li v-for="(video, index) in videos" :key="video.id">
+          <ListItem
+            v-bind:id="video.id"
+            v-bind:index="index"
+            v-bind:youtube="video.youtube"
+            v-bind:title="video.title"
+            v-bind:duration="video.duration"
+            v-bind:description="video.description"
+            v-bind:created-at="new Date(video.createdAt)"
+            v-bind:editable="authenticated"
+          />
+        </li>
+      </ul>
     </section>
   </main>
 </template>

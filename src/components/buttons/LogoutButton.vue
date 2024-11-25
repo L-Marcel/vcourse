@@ -1,6 +1,20 @@
+<script setup lang="ts">
+import router from '@/router'
+import { inject } from 'vue'
+import type { VueCookies } from 'vue-cookies'
+
+const $cookies = inject<VueCookies>('$cookies')
+
+const logout = () => {
+  $cookies?.remove('vcourse@token')
+  location.reload()
+}
+</script>
+
 <template>
   <button
     tabindex="0"
+    v-on:click="logout"
     class="bg-zinc-200 inline-block w-fit pl-1 hover:bg-red-500 group transition-colors duration-200 hover:cursor-pointer focus-visible:outline-none focus-visible:ring-2 ring-red-500"
   >
     sair
