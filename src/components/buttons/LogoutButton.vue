@@ -5,9 +5,13 @@ import type { VueCookies } from 'vue-cookies'
 
 const $cookies = inject<VueCookies>('$cookies')
 
+const emit = defineEmits<{
+  (e: 'logout'): void
+}>()
+
 const logout = () => {
   $cookies?.remove('vcourse@token')
-  location.reload()
+  emit('logout')
 }
 </script>
 

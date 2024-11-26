@@ -11,6 +11,10 @@ const props = defineProps({
   },
 })
 
+const emit = defineEmits<{
+  (e: 'removed'): void
+}>()
+
 const remove = async () => {
   const token = $cookies?.get('vcourse@token')
   const response = await fetch(`http://localhost:8080/videos/${props.id}`, {
@@ -21,9 +25,7 @@ const remove = async () => {
     },
   })
 
-  if (response.ok) {
-    location.reload()
-  }
+  if (response.ok) emit('removed')
 }
 </script>
 

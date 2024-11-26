@@ -48,6 +48,10 @@ const formattedDuration = formatDuration(
   },
   { locale: pt, delimiter: ' e ' },
 )
+
+const emit = defineEmits<{
+  (e: 'remove', index: number): void
+}>()
 </script>
 
 <template>
@@ -58,7 +62,7 @@ const formattedDuration = formatDuration(
   >
     <div v-show="props.editable" class="absolute flex flex-row top-4 left-4">
       <EditButton />
-      <RemoveButton v-bind:id="props.id" />
+      <RemoveButton v-on:removed="emit('remove', props.index)" v-bind:id="props.id" />
     </div>
     <img
       v-bind:src="`https://img.youtube.com/vi/${props.youtube}/hqdefault.jpg`"

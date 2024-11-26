@@ -24,6 +24,10 @@ const isAuth = async () => {
   return response.ok
 }
 
+const onLogout = () => {
+  authenticated.value = false
+}
+
 const getVideos = async () => {
   const response = await fetch('http://localhost:8080/videos', {
     method: 'GET',
@@ -38,6 +42,11 @@ const getVideos = async () => {
     return []
   }
 }
+
+const removeVideo = (index: number) => {
+  videos.value.splice(index, 1)
+}
+
 onMounted(async () => {
   authenticated.value = await isAuth()
   videos.value = await getVideos()
@@ -53,7 +62,7 @@ onMounted(async () => {
         <h1 class="w-min text-nowrap pr-1 font-semibold text-2xl md:text-4xl bg-zinc-300">
           <span class="bg-green-500 px-1 mr-1 inline-block h-full">V</span>Course
         </h1>
-        <LogoutButton v-show="authenticated" />
+        <LogoutButton v-on:logout="onLogout" v-show="authenticated" />
         <AdminButton v-show="!authenticated" />
       </div>
       <p class="text-sm md:text-base">
@@ -84,6 +93,7 @@ onMounted(async () => {
             v-bind:description="video.description"
             v-bind:created-at="new Date(video.createdAt)"
             v-bind:editable="authenticated"
+            v-on:remove="removeVideo"
           />
         </li>
       </ul>
