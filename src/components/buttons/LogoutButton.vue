@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import router from '@/router'
 import { inject } from 'vue'
 import type { VueCookies } from 'vue-cookies'
 

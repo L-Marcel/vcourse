@@ -25,7 +25,7 @@ const submit = async (e: Event) => {
 
   if (response.ok) {
     const { accessToken: token } = await response.json()
-    $cookies?.set('vcourse@token', token)
+    $cookies?.set('vcourse@token', token, '1d')
     router.push('/')
   } else {
     alert('Credenciais inválidas')

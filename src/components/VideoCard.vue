@@ -57,11 +57,11 @@ const emit = defineEmits<{
 <template>
   <RouterLink
     tabindex="0"
-    to="/"
+    v-bind:to="`/video/${props.id}`"
     class="flex flex-col relative md:flex-row gap-3 bg-zinc-200 p-4 hover:bg-green-400 group transition-colors duration-200 hover:cursor-pointer focus-visible:outline-none focus-visible:ring-2 ring-green-500"
   >
     <div v-show="props.editable" class="absolute flex flex-row top-4 left-4">
-      <EditButton />
+      <EditButton v-bind:id="props.id" />
       <RemoveButton v-on:removed="emit('remove', props.index)" v-bind:id="props.id" />
     </div>
     <img

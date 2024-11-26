@@ -5,7 +5,7 @@ import { inject, onMounted, reactive, ref } from 'vue'
 import type { VueCookies } from 'vue-cookies'
 import AddButton from '@/components/buttons/AddButton.vue'
 import LogoutButton from '@/components/buttons/LogoutButton.vue'
-import type { Video } from '@/types/videos'
+import type { Video } from '@/utils/videos'
 
 const $cookies = inject<VueCookies>('$cookies')
 const authenticated = ref(false)
@@ -49,6 +49,7 @@ const removeVideo = (index: number) => {
 
 onMounted(async () => {
   authenticated.value = await isAuth()
+  if (!authenticated.value) $cookies?.remove('vcourse@token')
   videos.value = await getVideos()
 })
 </script>
