@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { inject, onMounted, ref } from 'vue'
+import { computed, inject, onMounted, ref, watch } from 'vue'
 import type { VueCookies } from 'vue-cookies'
 import { videoSchema, type CreateVideoData } from '@/utils/videos'
 import router from '@/router'
-import { useRoute } from 'vue-router'
+import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 import BackButton from '@/components/buttons/BackButton.vue'
 import SubmitButton from '@/components/buttons/SubmitButton.vue'
 import Input from '@/components/Input.vue'
 import { ZodError } from 'zod'
+import Textarea from '@/components/Textarea.vue'
 
 const $cookies = inject<VueCookies>('$cookies')
 
@@ -50,10 +51,10 @@ const getVideo = async () => {
   }
 }
 
-const submit = async (e: Event) => {
-  e.preventDefault()
+const submit = async (event: Event) => {
+  event.preventDefault()
   try {
-    const data = videoSchema.parse(video.value);
+    const data = videoSchema.parse(video.value)
     if (id) {
       const response = await fetch(`http://localhost:8080/videos/${id}`, {
         method: 'PUT',
@@ -63,7 +64,7 @@ const submit = async (e: Event) => {
         },
         body: JSON.stringify({
           ...data,
-          createdAt: new Date().toString()
+          createdAt: new Date().toString(),
         }),
       })
 
@@ -81,7 +82,7 @@ const submit = async (e: Event) => {
         },
         body: JSON.stringify({
           ...data,
-          createdAt: new Date().toString()
+          createdAt: new Date().toString(),
         }),
       })
 
@@ -95,11 +96,33 @@ const submit = async (e: Event) => {
     if (e instanceof ZodError) {
       alert('Erro inesperado')
       console.log(e)
+      // [TODO] Show error messages
     }
-  };
+  }
 }
 
-onMounted(async () => {
+const onInputDuration = (event: Event) => {
+  const target = event.target as HTMLInputElement | null
+  if (target) {
+    const [hours, minutes] = target.value.split(':').map(Number)
+    video.value.duration = Math.max(Math.min(hours * 60 + minutes, 480), 0)
+    target.value = `${Math.floor(video.value.duration / 60)
+      .toString()
+      .padStart(2, '0')}:${(video.value.duration % 60).toString().padStart(2, '0')}`
+  }
+}
+
+const onInput = (event: Event) => {
+  const target = event.target as HTMLInputElement | null
+  if (target) {
+    video.value = {
+      ...video.value,
+      [target.name as keyof typeof video.value]: target.value,
+    }
+  }
+}
+
+const update = async () => {
   const authenticated = await isAuth()
   if (!authenticated) {
     router.replace('/401')
@@ -110,7 +133,10 @@ onMounted(async () => {
   } else {
     loading.value = false
   }
-})
+}
+
+onMounted(update)
+onBeforeRouteUpdate(update)
 </script>
 
 <template>
@@ -118,31 +144,62 @@ onMounted(async () => {
     <section class="flex flex-col gap-4">
       <BackButton />
       <div class="flex flex-col gap-0 w-full">
-        <h1 v-show="!id" class="w-min text-nowrap pr-1 font-semibold text-2xl md:text-4xl bg-zinc-300">
+        <h1
+          v-show="!id"
+          class="w-min text-nowrap pr-1 font-semibold text-2xl md:text-4xl bg-zinc-300"
+        >
           <span class="bg-green-500 px-1 mr-1 inline-block h-full">Registrar</span>Vídeo
         </h1>
-        <h1 v-show="id" class="w-min text-nowrap pr-1 font-semibold text-2xl md:text-4xl bg-zinc-300">
+        <h1
+          v-show="id"
+          class="w-min text-nowrap pr-1 font-semibold text-2xl md:text-4xl bg-zinc-300"
+        >
           <span class="bg-green-500 px-1 mr-1 inline-block h-full">Editar</span>Vídeo
         </h1>
       </div>
     </section>
     <section>
       <form v-on:submit="submit" class="flex flex-col gap-4 sm:max-w-[50%] md:max-w-[35%]">
-        <Input v-model="video.title" placeholder="Título" required />
         <Input
-          v-model="video.youtube"
-          icon="io-lock-closed-sharp"
+          name="title"
+          v-bind:value="video.title"
+          v-on:input="onInput"
+          placeholder="Título"
+          required
+        />
+        <Input
+          name="youtube"
+          v-bind:value="video.youtube"
+          v-on:input="onInput"
+          icon="io-key-sharp"
           placeholder="ID no Youtube"
           required
         />
-        <!-- <Input
-          v-model="video.duration"
-          icon="io-lock-closed-sharp"
-          placeholder="ID no Youtube"
-          type="number"
+        <Input
+          v-bind:value="`${Math.floor(video.duration / 60)
+            .toString()
+            .padStart(2, '0')}:${(video.duration % 60).toString().padStart(2, '0')}`"
+          v-on:input="onInputDuration"
+          v-on:change="onInputDuration"
+          v-on:keyup="onInputDuration"
+          v-on:keydown="onInputDuration"
+          v-on:keypress="onInputDuration"
+          v-on:blur="onInputDuration"
+          type="time"
+          step="60"
+          icon="io-time-sharp"
           required
-        /> -->
-        <SubmitButton v-bind:text="id? 'Salvar':'Registrar'" />
+        />
+        <Textarea
+          name="description"
+          v-bind:value="video.description"
+          v-on:input="onInput"
+          class="h-44 resize-none"
+          maxlength="360"
+          icon="io-clipboard-sharp"
+          placeholder="Descrição"
+        />
+        <SubmitButton v-bind:text="id ? 'Salvar' : 'Registrar'" />
       </form>
     </section>
   </main>

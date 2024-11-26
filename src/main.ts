@@ -15,6 +15,9 @@ import {
   IoAddSharp,
   IoPencil,
   IoTrashSharp,
+  IoKeySharp,
+  IoTimeSharp,
+  IoClipboardSharp,
 } from 'oh-vue-icons/icons'
 
 addIcons(
@@ -26,6 +29,9 @@ addIcons(
   IoAddSharp,
   IoPencil,
   IoTrashSharp,
+  IoKeySharp,
+  IoTimeSharp,
+  IoClipboardSharp,
 )
 
 const app = createApp(App)

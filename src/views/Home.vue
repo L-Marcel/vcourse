@@ -6,6 +6,7 @@ import type { VueCookies } from 'vue-cookies'
 import AddButton from '@/components/buttons/AddButton.vue'
 import LogoutButton from '@/components/buttons/LogoutButton.vue'
 import type { Video } from '@/utils/videos'
+import { onBeforeRouteUpdate } from 'vue-router'
 
 const $cookies = inject<VueCookies>('$cookies')
 const authenticated = ref(false)
@@ -47,11 +48,14 @@ const removeVideo = (index: number) => {
   videos.value.splice(index, 1)
 }
 
-onMounted(async () => {
+const update = async () => {
   authenticated.value = await isAuth()
   if (!authenticated.value) $cookies?.remove('vcourse@token')
   videos.value = await getVideos()
-})
+}
+
+onMounted(update)
+onBeforeRouteUpdate(update)
 </script>
 
 <template>

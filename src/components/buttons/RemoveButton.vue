@@ -15,7 +15,9 @@ const emit = defineEmits<{
   (e: 'removed'): void
 }>()
 
-const remove = async () => {
+const remove = async (event: Event) => {
+  e.preventDefault()
+
   const token = $cookies?.get('vcourse@token')
   const response = await fetch(`http://localhost:8080/videos/${props.id}`, {
     method: 'DELETE',
@@ -32,7 +34,7 @@ const remove = async () => {
 <template>
   <button
     tabindex="0"
-    class="inline-block w-fit hover:cursor-pointer focus-visible:outline-none focus-visible:ring-2 ring-red-500 bg-red-500 h-full px-0.5 transition-colors duration-200 hover:bg-red-600"
+    class="z-10 inline-block w-fit hover:cursor-pointer focus-visible:outline-none focus-visible:ring-2 ring-red-500 bg-red-500 h-full px-0.5 transition-colors duration-200 hover:bg-red-600"
     v-on:click="remove"
   >
     <v-icon name="io-trash-sharp" />

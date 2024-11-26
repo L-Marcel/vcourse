@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import type { Video } from '@/utils/videos'
 import router from '@/router'
-import { useRoute } from 'vue-router'
+import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 import BackButton from '@/components/buttons/BackButton.vue'
 import { format, formatDuration } from 'date-fns'
 import { pt } from 'date-fns/locale'
@@ -37,7 +37,7 @@ const getVideo = async () => {
   }
 }
 
-onMounted(async () => {
+const update = async () => {
   if (id) {
     video.value = await getVideo()
     formattedDate.value = format(video.value.createdAt, 'dd/MM/yyyy', { locale: pt })
@@ -51,7 +51,12 @@ onMounted(async () => {
   } else {
     router.replace('/404')
   }
-})
+}
+
+// [TODO] Show video background before load
+
+onMounted(update)
+onBeforeRouteUpdate(update)
 </script>
 
 <template>

@@ -13,8 +13,8 @@ const data = {
   password: '',
 }
 
-const submit = async (e: Event) => {
-  e.preventDefault()
+const submit = async (event: Event) => {
+  event.preventDefault()
   const response = await fetch('http://localhost:8080/login', {
     method: 'POST',
     headers: {
@@ -31,6 +31,13 @@ const submit = async (e: Event) => {
     alert('Credenciais inválidas')
   }
 }
+
+const onInput = (event: Event) => {
+  const target = event.target as HTMLInputElement | null
+  if (target) {
+    data[target.name as keyof typeof data] = target.value
+  }
+}
 </script>
 
 <template>
@@ -45,9 +52,17 @@ const submit = async (e: Event) => {
     </section>
     <section>
       <form v-on:submit="submit" class="flex flex-col gap-4 sm:max-w-[50%] md:max-w-[35%]">
-        <Input v-model="data.email" placeholder="Administrador" required />
         <Input
-          v-model="data.password"
+          name="email"
+          v-on:input="onInput"
+          v-bind:value="data.email"
+          placeholder="Administrador"
+          required
+        />
+        <Input
+          name="password"
+          v-on:input="onInput"
+          v-bind:value="data.password"
           icon="io-lock-closed-sharp"
           placeholder="Senha"
           type="password"
