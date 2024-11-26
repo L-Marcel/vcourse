@@ -19,7 +19,8 @@ import BackButton from '@/components/buttons/BackButton.vue'
       </p>
       <hr class="max-w-[75%]" />
       <p class="text-base md:text-xl">
-        Pedimos <span class="text-green-600 font-semibold">desculpas</span> qualquer incoveniente!
+        Pedimos <span class="text-green-600 font-semibold">desculpas</span> por qualquer
+        incoveniente!
       </p>
     </section>
   </main>
