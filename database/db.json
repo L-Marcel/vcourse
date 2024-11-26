@@ -39,6 +39,22 @@
       "duration": 120,
       "createdAt": "2024-11-14T10:00:00Z",
       "youtube": "9DRY-aNPta0"
+    },
+    {
+      "title": "teste",
+      "description": "",
+      "duration": 1,
+      "youtube": "9DRY-aNPta0",
+      "createdAt": "2024-11-14T10:00:00Z",
+      "id": 6
+    },
+    {
+      "title": "teste 2",
+      "description": "",
+      "duration": 1,
+      "youtube": "9DRY-aNPta0",
+      "createdAt": "Tue Nov 26 2024 15:50:15 GMT-0300 (Horário Padrão de Brasília)",
+      "id": 7
     }
   ],
   "users": [

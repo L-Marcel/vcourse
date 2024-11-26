@@ -12,8 +12,8 @@ export interface Video {
 export const videoSchema = z.object({
   title: z
     .string()
-    .min(6, {
-      message: 'Título deve ter no mínimo 6 caracteres.',
+    .min(3, {
+      message: 'Título deve ter no mínimo 3 caracteres.',
     })
     .max(120, {
       message: 'Título deve ter no máximo 120 caracteres.',

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BackButton from '@/components/buttons/BackButton.vue'
-import LoginButton from '@/components/buttons/LoginButton.vue'
+import SubmitButton from '@/components/buttons/SubmitButton.vue'
 import Input from '@/components/Input.vue'
 import router from '@/router'
 import { inject } from 'vue'
@@ -53,7 +53,7 @@ const submit = async (e: Event) => {
           type="password"
           required
         />
-        <LoginButton />
+        <SubmitButton text="Entrar" />
       </form>
     </section>
   </main>
