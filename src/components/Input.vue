@@ -25,6 +25,13 @@ const props = defineProps({
 
 const attrs = useAttrs()
 const emit = defineEmits(['update:modelValue'])
+
+const onInput = (event: Event) => {
+  const target = event.target as HTMLInputElement | null
+  if (target) {
+    emit('update:modelValue', target.value)
+  }
+}
 </script>
 
 <template>
@@ -39,14 +46,7 @@ const emit = defineEmits(['update:modelValue'])
         v-bind:placeholder="props.placeholder"
         v-bind:value="props.modelValue"
         v-bind="attrs"
-        v-on:input="
-          (event) => {
-            const target = event.target as HTMLInputElement | null
-            if (target) {
-              emit('update:modelValue', target.value)
-            }
-          }
-        "
+        v-on:input="onInput"
       />
     </div>
   </label>
