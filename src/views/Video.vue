@@ -53,8 +53,6 @@ const update = async () => {
   }
 }
 
-// [TODO] Show video background before load
-
 onMounted(update)
 onBeforeRouteUpdate(update)
 </script>
@@ -64,7 +62,7 @@ onBeforeRouteUpdate(update)
     <section class="flex flex-col gap-2">
       <BackButton />
       <iframe
-        class="aspect-video w-full md:w-2/3 lg:w-1/2"
+        class="aspect-video w-full md:w-2/3 lg:w-1/2 bg-black"
         v-bind:src="`https://www.youtube.com/embed/${video.youtube}`"
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

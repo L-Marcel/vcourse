@@ -16,7 +16,7 @@ const emit = defineEmits<{
 }>()
 
 const remove = async (event: Event) => {
-  e.preventDefault()
+  event.preventDefault()
 
   const token = $cookies?.get('vcourse@token')
   const response = await fetch(`http://localhost:8080/videos/${props.id}`, {

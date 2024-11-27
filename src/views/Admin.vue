@@ -3,11 +3,12 @@ import BackButton from '@/components/buttons/BackButton.vue'
 import SubmitButton from '@/components/buttons/SubmitButton.vue'
 import Input from '@/components/Input.vue'
 import router from '@/router'
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 import type { VueCookies } from 'vue-cookies'
 
 const $cookies = inject<VueCookies>('$cookies')
 
+const error = ref<string>('')
 const data = {
   email: '',
   password: '',
@@ -28,7 +29,10 @@ const submit = async (event: Event) => {
     $cookies?.set('vcourse@token', token, '1d')
     router.push('/')
   } else {
-    alert('Credenciais inválidas')
+    error.value = 'Credenciais inválidas!'
+    const element = document.getElementsByName('email')[0]
+    console.log(element)
+    element?.focus()
   }
 }
 
@@ -51,13 +55,17 @@ const onInput = (event: Event) => {
       </div>
     </section>
     <section>
-      <form v-on:submit="submit" class="flex flex-col gap-4 sm:max-w-[50%] md:max-w-[35%]">
+      <form
+        autocomplete="off"
+        v-on:submit="submit"
+        class="flex flex-col gap-4 sm:max-w-[50%] md:max-w-[35%]"
+      >
         <Input
+          autofocus
           name="email"
           v-on:input="onInput"
           v-bind:value="data.email"
           placeholder="Administrador"
-          required
         />
         <Input
           name="password"
@@ -66,7 +74,7 @@ const onInput = (event: Event) => {
           icon="io-lock-closed-sharp"
           placeholder="Senha"
           type="password"
-          required
+          v-bind:error="error"
         />
         <SubmitButton text="Entrar" />
       </form>
