@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { inject } from 'vue';
-import type { VueCookies } from 'vue-cookies';
+import { inject } from 'vue'
+import type { VueCookies } from 'vue-cookies'
 
-const $cookies = inject<VueCookies>('$cookies');
+const $cookies = inject<VueCookies>('$cookies')
 
 const emit = defineEmits<{
-  (e: 'logout'): void;
-}>();
+  (e: 'logout'): void
+}>()
 
 const logout = () => {
-  $cookies?.remove('vcourse@token');
-  emit('logout');
-};
+  $cookies?.remove('vcourse@token')
+  emit('logout')
+}
 </script>
 
 <template>

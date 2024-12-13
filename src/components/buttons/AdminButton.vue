@@ -8,7 +8,7 @@
     <span
       class="flex items-center justify-center bg-green-500 text-white rounded-full w-6 h-6 transition-transform duration-300 group-hover:translate-x-1"
     >
-      <v-icon name="io-arrow-forward-sharp" />
+      <v-icon name="hi-arrow-sm-right" />
     </span>
   </RouterLink>
 </template>

@@ -59,10 +59,10 @@ onBeforeRouteUpdate(update)
 
 <template>
   <main class="p-8 min-h-screen flex flex-col gap-4">
-    <section class="flex flex-col gap-2">
+    <section class="flex flex-col gap-4">
       <BackButton />
       <iframe
-        class="aspect-video w-full md:w-2/3 lg:w-1/2 bg-black"
+        class="aspect-video shadow-md w-full rounded-xl overflow-hidden md:w-2/3 lg:w-1/2 bg-black"
         v-bind:src="`https://www.youtube.com/embed/${video.youtube}`"
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -71,14 +71,14 @@ onBeforeRouteUpdate(update)
     </section>
     <section>
       <h1
-        class="font-medium text-2xl bg-zinc-300 px-1 w-min text-nowrap transition-colors duration-200 group-hover:bg-green-500 text-ellipsis overflow-hidden max-w-full"
+        class="font-medium shadow-md rounded-r-lg rounded-tl-lg text-2xl bg-zinc-200 px-2 w-min text-nowrap transition-colors duration-200 group-hover:bg-green-500 text-ellipsis overflow-hidden max-w-full"
       >
         {{ video.title }}
       </h1>
       <div>
         <time
           v-bind:datetime="video.createdAt.toString()"
-          class="bg-green-500 px-1 mr-1 inline-block h-full transition-colors duration-200 group-hover:bg-green-600"
+          class="bg-green-500 shadow-md rounded-b-lg px-2 mr-1 inline-block h-full transition-colors duration-200 group-hover:bg-green-600"
           >{{ formattedDate }}</time
         >
         <time class="hidden md:inline">{{ formattedDuration }}</time>

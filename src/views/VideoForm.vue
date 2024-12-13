@@ -203,15 +203,18 @@ onBeforeRouteUpdate(update)
       <div class="flex flex-col gap-0 w-full">
         <h1
           v-show="!id"
-          class="w-min text-nowrap pr-1 font-semibold text-2xl md:text-4xl bg-zinc-300"
+          class="w-min rounded-lg text-nowrap pr-2 font-semibold text-2xl md:text-4xl bg-zinc-200 shadow-md"
         >
-          <span class="bg-green-500 px-1 mr-1 inline-block h-full">Registrar</span>Vídeo
+          <span class="bg-green-500 rounded-l-lg px-2 py-0.5 mr-2 inline-block h-full"
+            >Registrar</span
+          >Vídeo
         </h1>
         <h1
           v-show="id"
-          class="w-min text-nowrap pr-1 font-semibold text-2xl md:text-4xl bg-zinc-300"
+          class="w-min rounded-lg text-nowrap pr-2 font-semibold text-2xl md:text-4xl bg-zinc-200 shadow-md"
         >
-          <span class="bg-green-500 px-1 mr-1 inline-block h-full">Editar</span>Vídeo
+          <span class="bg-green-500 rounded-l-lg px-2 py-0.5 mr-2 inline-block h-full">Editar</span
+          >Vídeo
         </h1>
       </div>
     </section>

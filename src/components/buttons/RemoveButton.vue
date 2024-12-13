@@ -34,7 +34,7 @@ const remove = async (event: Event) => {
 <template>
   <button
     tabindex="0"
-    class="z-10 inline-block w-fit hover:cursor-pointer focus-visible:outline-none focus-visible:ring-2 ring-red-500 bg-red-500 h-full px-0.5 transition-colors duration-200 hover:bg-red-600"
+    class="z-10 rounded-br-lg inline-block w-fit hover:cursor-pointer focus-visible:outline-none focus-visible:ring-2 ring-red-500 bg-red-500 h-full px-0.5 transition-colors duration-200 hover:bg-red-600"
     v-on:click="remove"
   >
     <v-icon name="io-trash-sharp" />

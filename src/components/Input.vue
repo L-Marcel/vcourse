@@ -20,8 +20,10 @@ const props = defineProps({
 
 <template>
   <label tabindex="-1" class="flex flex-col gap-3 w-full">
-    <div class="flex flex-row w-full bg-green-500 ring-green-600 focus-within:ring-2">
-      <div class="flex justify-center items-center h-10 w-10 min-h-10 min-w-10">
+    <div
+      class="flex shadow-md overflow-hidden rounded-lg flex-row w-full ring-green-600 focus-within:ring-2"
+    >
+      <div class="flex justify-center items-center h-10 w-10 min-h-10 min-w-10 bg-green-500">
         <v-icon v-bind:name="props.icon" />
       </div>
       <input
