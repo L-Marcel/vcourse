@@ -60,7 +60,7 @@
   "users": [
     {
       "email": "admin@admin.com",
-      "password": "$2a$10$iY9MlcMz0AWbEsKoQkZZt.jPwz90/vVtngO.HGP.qccXayw7xQ4Bu",
+      "password": "$2a$10$iY9MlcMz0AWbEsKoQkZZt.jPwz90/vVtngO.HGP.qccXayw7xQ4Bu", 
       "name": "Administrator",
       "id": 1
     }
