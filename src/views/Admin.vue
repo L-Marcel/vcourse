@@ -86,9 +86,6 @@ const onInput = (event: Event) => {
           text="Entrar"
           class="bg-green-500 font-semibold py-3 rounded-lg shadow-md hover:bg-green-600 transition-all duration-300"
         />
-        <p v-if="error" class="text-red-500 text-center text-sm font-medium">
-          {{ error }}
-        </p>
       </form>
     </section>
   </main>
