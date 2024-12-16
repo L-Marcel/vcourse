@@ -70,7 +70,6 @@ const onInput = (event: Event) => {
           v-on:input="onInput"
           v-bind:value="data.email"
           placeholder="Administrador"
-          class="border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500"
         />
         <Input
           name="password"
@@ -80,7 +79,6 @@ const onInput = (event: Event) => {
           placeholder="Senha"
           type="password"
           v-bind:error="error"
-          class="border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500"
         />
         <SubmitButton
           text="Entrar"
